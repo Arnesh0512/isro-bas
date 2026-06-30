@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INSAT Temporal Interpolation Dashboard</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <canvas id="starfield"></canvas>
+  <main class="dashboard">
+
+    <header class="hero-bar panel">
+      <div class="brand-lockup">
+        <div class="crest-logo" aria-hidden="true">
+          <img src="./logo.png" alt="Team logo">
+        </div>
+        <div>
+          <p class="eyebrow">Problem Statement 12</p>
+          <h1>AI-Based Temporal Resolution Enhancement for INSAT TIR Imagery</h1>
+        </div>
+      </div>
+    </header>
+
+    <section class="controls panel">
+      <button class="search-icon-button" id="searchButton" title="Search">&#x2315;</button>
+      <div class="control-group">
+        <label for="startDate">Start</label>
+        <input id="startDate" type="datetime-local" value="2026-06-15T21:00">
+      </div>
+      <div class="control-group">
+        <label for="endDate">End</label>
+        <input id="endDate" type="datetime-local" value="2026-06-17T09:00">
+      </div>
+      <div class="control-group">
+        <label>LIVE</label>
+
+        <div
+            id="liveTime"
+            class="live-time"
+            title="Interpolation is behind 30 minutes of LIVE">
+        </div>
+
+      </div>
+      <div class="control-group">
+        <label for="interpolationMode">Interpolation</label>
+        <select id="interpolationMode">
+          <option value="30">No interpolation (30 min)</option>
+          <option value="15" selected>15 minute interpolation</option>
+          <option value="7.5">7.5 minute interpolation</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="visibleFrames">Images In Slider</label>
+        <select id="visibleFrames"></select>
+      </div>
+    </section>
+
+        <section class="timeline panel">
+      <div class="timeline-header">
+        <div>
+          <p class="eyebrow">Temporal Navigation</p>
+        </div>
+      </div>
+
+      <div class="timeline-track-wrap">
+        <span class="edge-time" id="rangeStartLabel">15 Jul 2026 21:00</span>
+        <div class="timeline-track" id="timelineTrack"></div>
+        <span class="edge-time edge-time-end" id="rangeEndLabel">17 Jul 2026 09:00</span>
+      </div>
+
+      <div class="thumb-strip" id="thumbStrip" aria-live="polite"></div>
+
+      <div class="window-label" id="windowLabel">Showing 8 frames</div>
+
+      <div class="window-counter" id="windowCounter">Window 1</div>
+
+      <div class="thumb-toolbar">
+
+        <div class="timeline-nav">
+
+            <button
+                id="prevWindow"
+                class="toolbar-button icon-button"
+                title="Previous Window">
+                ↞
+            </button>
+
+            <button
+                id="prevFrame"
+                class="toolbar-button icon-button"
+                title="Previous Frame">
+                ←
+            </button>
+
+        </div>
+
+        <div class="playback-cluster">
+
+            <button
+                id="fastBackwardButton"
+                class="toolbar-button icon-button">
+                ⏮
+            </button>
+
+            <button
+                id="backwardButton"
+                class="toolbar-button icon-button">
+                ◀
+            </button>
+
+            <button
+                id="playPauseButton"
+                class="toolbar-button icon-button">
+                ⏯
+            </button>
+
+            <button
+                id="forwardButton"
+                class="toolbar-button icon-button">
+                ▶
+            </button>
+
+            <button
+                id="fastForwardButton"
+                class="toolbar-button icon-button">
+                ⏭
+            </button>
+
+        </div>
+
+        <div class="timeline-nav">
+
+            <button
+                id="nextFrame"
+                class="toolbar-button icon-button"
+                title="Next Frame">
+                →
+            </button>
+
+            <button
+                id="nextWindow"
+                class="toolbar-button icon-button"
+                title="Next Window">
+                ↠
+            </button>
+
+        </div>
+
+    </div>
+    </section>
+<section class="main-grid">
+      <article class="viewer panel">
+        <div class="viewer-topline">
+          <div>
+            <p class="eyebrow">Selected Timestamp</p>
+            <h2 id="selectedTime">Tue Jul 15 2026 21:00 IST</h2>
+          </div>
+          <div class="status-pill" id="previewLabelWrap">
+            <span class="live-dot"></span>
+            <span id="previewLabel">
+            Natural Frame Preview
+            </span>
+          </div>
+        </div>
+
+        <div class="viewer-stage">
+          <div class="aurora"></div>
+          <img id="mainImage" src="" alt="Satellite frame preview">
+          <div class="viewer-zoom" aria-label="Zoom controls">
+            <button class="zoom-icon-button" id="zoomInButton" aria-label="Zoom in" title="Zoom in">+</button>
+            <button class="zoom-icon-button" id="zoomOutButton" aria-label="Zoom out" title="Zoom out">-</button>
+          </div>
+        </div>
+      </article>
+
+      <aside class="info-column">
+        <section class="panel mini-panel" id="quickMetricsCard">
+          <p class="eyebrow">Quick Metrics</p>
+          <div class="metric-stack">
+            <div><span>MSE</span><strong>0.0084</strong></div>
+            <div><span>PSNR</span><strong>32.8 dB</strong></div>
+            <div><span>SSIM</span><strong>0.93</strong></div>
+            <div><span>FSIM</span><strong>0.91</strong></div>
+          </div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
